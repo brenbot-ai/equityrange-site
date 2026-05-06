@@ -340,7 +340,7 @@
 
   .projects-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
@@ -524,6 +524,10 @@
   }
 
   /* RESPONSIVE */
+  @media (max-width: 1000px) {
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+  }
+
   @media (max-width: 800px) {
     .about-grid,
     .projects-grid,
@@ -704,12 +708,25 @@
     </a>
 
     <a href="https://centlivrebeer.equityrange.com/" class="project-card">
-      <span class="project-badge">In Development</span>
+      <span class="project-badge">Live</span>
       <span class="project-tag">Fan &amp; Promo</span>
       <h3 class="project-title">Centlivre Beer</h3>
       <p class="project-desc">A fan and promotional page celebrating Centlivre, Fort Wayne's historic brewery. A passion project honoring a piece of regional history worth remembering.</p>
       <span class="project-link">
         Visit page
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+
+    <a href="https://bwlegacyfarms.com" class="project-card">
+      <span class="project-badge">Live</span>
+      <span class="project-tag">Family Farm &amp; Heritage</span>
+      <h3 class="project-title">B&amp;W Legacy Farms</h3>
+      <p class="project-desc">A web presence for a family farming operation rooted in Indiana. Celebrating agricultural heritage and the legacy of land that has been worked across generations.</p>
+      <span class="project-link">
+        Visit site
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
