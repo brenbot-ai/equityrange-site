@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equity Range LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f1e2e;
+    --navy-mid: #1c3347;
+    --navy-light: #2a4a65;
+    --amber: #c8963e;
+    --amber-light: #e8b870;
+    --cream: #f8f5f0;
+    --cream-mid: #f0ebe3;
+    --text-primary: #0f1e2e;
+    --text-secondary: #4a6278;
+    --text-muted: #7a95a8;
+    --border: #ddd8d0;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    color: var(--text-primary);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 max(2rem, calc((100% - 1100px) / 2));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--amber);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px max(2rem, calc((100% - 1100px) / 2)) 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%;
+    height: 100%;
+    background: var(--cream);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 620px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--amber);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    margin-bottom: 1.75rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--navy-light);
+  }
+
+  .hero-sub {
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.875rem 1.75rem;
+    transition: background 0.2s;
+  }
+
+  .hero-cta:hover { background: var(--navy-mid); }
+
+  .hero-cta svg { transition: transform 0.2s; }
+  .hero-cta:hover svg { transform: translateX(3px); }
+
+  .hero-stats {
+    position: absolute;
+    right: max(2rem, calc((100% - 1100px) / 2));
+    bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.25rem;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    display: block;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 96px max(2rem, calc((100% - 1100px) / 2)); }
+
+  .section-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ABOUT */
+  .about { background: var(--cream); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-secondary);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .credential-item {
+    padding: 1.375rem 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .credential-item:first-child { border-top: 1px solid var(--border); }
+
+  .credential-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .credential-icon svg { width: 16px; height: 16px; color: var(--amber); }
+
+  .credential-title {
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: var(--navy);
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+  }
+
+  .credential-detail {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* EXPERTISE */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+  }
+
+  .expertise-card {
+    background: var(--white);
+    padding: 2rem 1.75rem;
+  }
+
+  .expertise-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--cream-mid);
+    line-height: 1;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .expertise-title {
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: var(--navy);
+    margin-bottom: 0.625rem;
+    line-height: 1.35;
+  }
+
+  .expertise-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* PROJECTS */
+  .projects { background: var(--navy); }
+  .projects .section-label { color: var(--amber-light); }
+  .projects .section-title { color: var(--white); }
+
+  .projects-intro {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover { border-color: rgba(255,255,255,0.25); }
+  .project-card:hover::after { transform: scaleX(1); }
+
+  .project-tag {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.625rem;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 0.875rem;
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 1.75rem;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+  }
+
+  .project-link svg { transition: transform 0.2s; }
+  .project-card:hover .project-link svg { transform: translateX(4px); }
+
+  .project-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid rgba(200, 150, 62, 0.4);
+    color: var(--amber);
+  }
+
+  /* CONTACT */
+  .contact { background: var(--cream); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .contact-text p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .contact-email {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--navy);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--amber);
+    padding-bottom: 0.25rem;
+    transition: color 0.2s;
+  }
+
+  .contact-email:hover { color: var(--amber); }
+
+  .contact-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .contact-detail-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .contact-detail-icon svg { width: 14px; height: 14px; color: var(--amber); }
+
+  .contact-detail-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-detail-value {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 2rem max(2rem, calc((100% - 1100px) / 2));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-logo span { color: var(--amber); }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 800px) {
+    .about-grid,
+    .projects-grid,
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .hero::before { display: none; }
+    .hero-stats { position: static; flex-direction: row; gap: 2rem; margin-top: 3rem; }
+    .stat-item { text-align: left; }
+    nav { padding: 0 1.5rem; }
+    section { padding: 64px 1.5rem; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero h1 { animation: fadeUp 0.6s 0.12s ease both; }
+  .hero-sub { animation: fadeUp 0.6s 0.22s ease both; }
+  .hero-cta { animation: fadeUp 0.6s 0.32s ease both; }
+  .hero-stats { animation: fadeUp 0.6s 0.42s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Equity <span>Range</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Equity Range LLC</div>
+    <h1>Where technology<br>meets <em>financial</em><br>discipline.</h1>
+    <p class="hero-sub">
+      Three decades of technology leadership — from enterprise infrastructure to AI strategy — grounded in a finance practitioner's instinct for return, risk, and long-term value.
+    </p>
+    <a href="#projects" class="hero-cta">
+      View Projects
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">30+</span>
+      <span class="stat-label">Years in technology</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">17+</span>
+      <span class="stat-label">Years in leadership</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">Background</div>
+      <h2 class="section-title">Technology leader.<br>Finance practitioner.</h2>
+      <p>
+        I've spent thirty years building and running technology organizations — leading enterprise-scale infrastructure, managing vendor relationships worth hundreds of millions, and translating complex technical problems into business outcomes.
+      </p>
+      <p>
+        That career was built on an undergraduate foundation in finance. The combination has always been my edge: the ability to think in systems <em>and</em> in capital — to see where technology investment compounds and where it doesn't.
+      </p>
+      <p>
+        Equity Range LLC is the vehicle I'm building for the next chapter: independent advisory work, financial tools, and projects that sit at the intersection of both disciplines.
+      </p>
+    </div>
+
+    <div class="credentials">
+      <div class="credential-item">
+        <div class="credential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="credential-title">Senior Director, Information Technology</div>
+          <div class="credential-detail">Enterprise-scale technology leadership</div>
+        </div>
+      </div>
+
+      <div class="credential-item">
+        <div class="credential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="credential-title">Master of Science, Information Technology</div>
+          <div class="credential-detail">Graduate degree · Technology leadership focus</div>
+        </div>
+      </div>
+
+      <div class="credential-item">
+        <div class="credential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="credential-title">Bachelor of Science, Finance</div>
+          <div class="credential-detail">Undergraduate foundation · Capital markets &amp; analysis</div>
+        </div>
+      </div>
+
+      <div class="credential-item">
+        <div class="credential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div>
+          <div class="credential-title">Series 65 — In Progress</div>
+          <div class="credential-detail">Registered Investment Adviser qualification</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-label">What I Bring</div>
+  <h2 class="section-title">Core disciplines</h2>
+
+  <div class="expertise-grid">
+    <div class="expertise-card">
+      <span class="expertise-num">01</span>
+      <div class="expertise-title">Enterprise Technology Leadership</div>
+      <p class="expertise-desc">Large-scale IT organization management, infrastructure strategy, vendor governance, and technology transformation across complex enterprise environments.</p>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-num">02</span>
+      <div class="expertise-title">Financial Analysis &amp; Planning</div>
+      <p class="expertise-desc">Investment frameworks, retirement income modeling, portfolio strategy, and quantitative decision-making grounded in a finance academic foundation.</p>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-num">03</span>
+      <div class="expertise-title">Applied Tools &amp; Systems</div>
+      <p class="expertise-desc">Building practical software tools that solve real financial problems — calculators, planning engines, and decision aids built for clarity and actual use.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="section-label">Active Work</div>
+  <h2 class="section-title">Projects</h2>
+  <p class="projects-intro">Tools and frameworks being built at the intersection of data, probability, and financial decision-making.</p>
+
+  <div class="projects-grid">
+    <a href="https://poker.equityrange.com/" class="project-card">
+      <span class="project-badge">In Development</span>
+      <span class="project-tag">Poker · Gambling Analytics</span>
+      <h3 class="project-title">Poker &amp; Gambling Tracker</h3>
+      <p class="project-desc">A session tracking and analytics app for serious poker players — logging results, identifying trends, and building the data foundation for a disciplined, endowment-style bankroll strategy.</p>
+      <span class="project-link">
+        Explore project
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+
+    <a href="https://centlivrebeer.equityrange.com/" class="project-card">
+      <span class="project-badge">In Development</span>
+      <span class="project-tag">Fan &amp; Promo</span>
+      <h3 class="project-title">Centlivre Beer</h3>
+      <p class="project-desc">A fan and promotional page celebrating Centlivre, Fort Wayne's historic brewery. A passion project honoring a piece of regional history worth remembering.</p>
+      <span class="project-link">
+        Visit page
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-text">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Let's connect.</h2>
+      <p>Whether you're exploring an advisory engagement, have questions about the tools, or just want to trade ideas — reach out directly.</p>
+      <a href="mailto:brian@equityrange.com" class="contact-email">
+        brian@equityrange.com
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="contact-aside">
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">Location</div>
+          <div class="contact-detail-value">Fort Wayne Area, Indiana</div>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">Focus</div>
+          <div class="contact-detail-value">Technology · Finance · Independent Advisory</div>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">LinkedIn</div>
+          <div class="contact-detail-value"><a href="https://www.linkedin.com/in/brian-brenneke-05585432/" style="color: inherit; text-decoration: none;">linkedin.com/in/brian-brenneke</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Equity <span>Range</span> LLC</div>
+  <div class="footer-copy">&copy; 2026 Equity Range LLC · Leo, Indiana</div>
+</footer>
+
+</body>
+</html>
